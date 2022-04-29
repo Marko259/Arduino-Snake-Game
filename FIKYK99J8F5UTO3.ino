@@ -1,11 +1,11 @@
 #include <SPI.h>
 #include <MD_KeySwitch.h>
 #include <MD_MAX72xx.h>
-#define HARDWARE_TYPE MD_MAX72XX::FC16_HW// PAROLA_HW
+#define HARDWARE_TYPE MD_MAX72XX::FC16_HW
 #define MAX_DEVICES 4
-#define CLK_PIN 13 // or SCK
-#define DATA_PIN 11 // or MOSI
-#define CS_PIN 10 // or SS
+#define CLK_PIN 13
+#define DATA_PIN 11
+#define CS_PIN 10
 MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 
 
@@ -57,18 +57,12 @@ void slide()
 
 int Joystick()
 {
-  // 0 = up
-  // 1 = down
-  // 2 = right
-  // 3 = left
-  // 4 = nothing
-  // 5 = click
   const int VRx = 0;
   const int VRy = 1;
   const int SW = 2;
   if(analogRead(VRy) > 900)
   {
-    prev = 0;
+    prev = 0; 
     return 0;
   }
   if(analogRead(VRy) < 120)
@@ -282,16 +276,16 @@ void loop()
   switch(Joystick())
   {
     case 0:
-    coord[0][1] = coord[1][1]+1; //y+1
+    coord[0][1] = coord[1][1]+1;
     break;
     case 1:
-    coord[0][1] = coord[1][1]-1; //y-1
+    coord[0][1] = coord[1][1]-1;
     break;
     case 2:
-    coord[0][0] = coord[1][0]+1; //x+1
+    coord[0][0] = coord[1][0]+1;
     break;
     case 3:
-    coord[0][0] = coord[1][0]-1; //x-1
+    coord[0][0] = coord[1][0]-1;
     break;
   }
   for (int x = 0; x < 5; x++)
@@ -374,7 +368,6 @@ void printNumber(long number,int place)
   int num3 = number / 10  - num1 * 100 - num2 * 10;
   int num4 = number       - num1 * 1000- num2 * 100 - num3 * 10;
 
-  //charachter 1
   digitalWrite(aa,0);
   digitalWrite(bb,0);
   digitalWrite(cc,0);
@@ -509,8 +502,6 @@ void printNumber(long number,int place)
 
   delay(delay1);
 
-  
-  //charachter 2
   digitalWrite(aa,0);
   digitalWrite(bb,0);
   digitalWrite(cc,0);
@@ -645,8 +636,7 @@ void printNumber(long number,int place)
 
   delay(delay1);
 
-  
-  //charachter 3
+
   digitalWrite(aa,0);
   digitalWrite(bb,0);
   digitalWrite(cc,0);
@@ -783,8 +773,6 @@ void printNumber(long number,int place)
 
   delay(delay1);
 
-  
-  //charachter 4
   digitalWrite(dot,0);
   
   digitalWrite(aa,0);
